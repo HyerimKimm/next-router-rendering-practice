@@ -1,10 +1,16 @@
 import Link from "next/link";
-import classes from "./MainHeader.module.css";
+
+import styles from "./MainHeader.module.css";
+
 export default function MainHeader() {
   return (
-    <header className={classes.header_wrap}>
-      <Link href="/">🏠</Link>
-      <Link href="/news">news</Link>
+    <header className={styles.header_wrap}>
+      <Link href="/" className={styles.button}>
+        🏠
+      </Link>
+      <Link href="/news" className={styles.button}>
+        news
+      </Link>
     </header>
   );
 }
