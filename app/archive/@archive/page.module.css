@@ -1,0 +1,14 @@
+.list_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.list_item > a {
+  &:hover {
+    color: skyblue;
+  }
+}
