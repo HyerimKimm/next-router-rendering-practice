@@ -1,5 +1,4 @@
 import { DUMMY_NEWS } from "@/dummy_news";
-import { NewsType } from "@/types/news";
 
 export function getAllNews() {
   return DUMMY_NEWS;
@@ -41,5 +40,14 @@ export function getNewsForYear(year: number) {
     const newsYear = new Date(news.date).getFullYear();
 
     return newsYear === year;
+  });
+}
+
+export function getNewsForMonth(year: number, month: number) {
+  return DUMMY_NEWS.filter((news) => {
+    const newsYear = new Date(news.date).getFullYear();
+    const newsMonth = new Date(news.date).getMonth();
+
+    return newsYear === year && month === newsMonth;
   });
 }
