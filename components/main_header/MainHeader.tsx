@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import styles from "./MainHeader.module.css";
+import HeaderLink from "./header_link/HeaderLink";
 
 export default function MainHeader() {
   return (
@@ -8,9 +9,7 @@ export default function MainHeader() {
       <Link href="/" className={styles.button}>
         🏠
       </Link>
-      <Link href="/news" className={styles.button}>
-        news
-      </Link>
+      <HeaderLink />
     </header>
   );
 }

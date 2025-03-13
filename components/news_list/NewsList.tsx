@@ -3,6 +3,10 @@ import styles from "./NewsList.module.css";
 import Link from "next/link";
 
 export default function NewsList({ newsList }: { newsList: NewsType[] }) {
+  if (newsList.length === 0) {
+    return <ul className={styles.news_list}>No news for selected period.</ul>;
+  }
+
   return (
     <ul className={styles.news_list}>
       {newsList.map((news) => (

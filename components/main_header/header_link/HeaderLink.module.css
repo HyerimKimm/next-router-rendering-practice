@@ -1,12 +1,9 @@
-.header_wrap {
-  width: 100%;
-  border-bottom: 1px solid var(--grey05);
-  padding: 8px;
+.link_wrap {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 4px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .button {
@@ -27,4 +24,8 @@
       background-color: rgba(255, 255, 255, 0.15);
     }
   }
+}
+
+.selected {
+  background-color: gray;
 }

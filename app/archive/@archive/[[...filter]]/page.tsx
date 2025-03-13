@@ -2,13 +2,14 @@ import NewsList from "@/components/news_list/NewsList";
 import {
   getAvailableNewsMonths,
   getAvailableNewsYears,
+  getNewsForMonth,
   getNewsForYear,
 } from "@/lib/news";
 import styles from "./page.module.css";
-import Link from "next/link";
 import { NewsType } from "@/types/news";
+import ArchiveFilterNav from "../filter_nav/ArchiveFilterNav";
 
-export default function YearFilteredArchivePage({
+export default async function YearFilteredArchivePage({
   params,
 }: {
   params: {
@@ -21,7 +22,7 @@ export default function YearFilteredArchivePage({
   const selectedMonth = filter?.[1];
 
   const yearLink = getAvailableNewsYears();
-  const monthLink: number[] = selectedYear
+  const monthLink: string[] = selectedYear
     ? getAvailableNewsMonths(Number(selectedYear))
     : [];
 
@@ -30,30 +31,27 @@ export default function YearFilteredArchivePage({
   if (selectedYear && !selectedMonth) {
     newsList = getNewsForYear(Number(filter[0]));
   } else if (selectedYear && selectedMonth) {
+    newsList = getNewsForMonth(Number(filter[0]), Number(filter[1]));
   }
 
   return (
     <>
       <header>
-        <nav>
-          <ul className={styles.list_wrap}>
-            {yearLink.map((link) => (
-              <li key={link} className={styles.list_item}>
-                <Link href={`/archive/${link}`}>{link}</Link>
-              </li>
-            ))}
-          </ul>
-          <ul className={styles.list_wrap}>
-            {monthLink.map((link) => {
-              return (
-                <li key={link} className={styles.list_item}>
-                  <Link href={`/archive/${selectedYear}/${link}`}>
-                    {link}월
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+        <nav className={styles.nav_wrap}>
+          <ArchiveFilterNav
+            filterList={yearLink.map((year) => ({
+              href: `${year}`,
+              title: `${year}년`,
+            }))}
+            selectedFilter={selectedYear}
+          />
+          <ArchiveFilterNav
+            filterList={monthLink.map((month) => ({
+              href: `${selectedYear}/${month}`,
+              title: `${month}월`,
+            }))}
+            selectedFilter={`${selectedYear}/${selectedMonth}`}
+          />
         </nav>
       </header>
       <NewsList newsList={newsList} />
