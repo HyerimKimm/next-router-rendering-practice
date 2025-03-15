@@ -1,6 +1,7 @@
 import { DUMMY_NEWS } from "@/dummy_news";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 type NewsDetailPageParamsType = {
   id: string;
@@ -22,11 +23,13 @@ export default function NewsDetailPage({
   return (
     <article className={styles.page}>
       <header className={styles.header}>
-        <img
-          src={`/images/news/${news?.image}`}
-          alt={news?.title}
-          className={styles.poster}
-        />
+        <Link href={`/news/${news.id}/image`}>
+          <img
+            src={`/images/news/${news?.image}`}
+            alt={news?.title}
+            className={styles.poster}
+          />
+        </Link>
         <h1>{news.title}</h1>
         <time dateTime={news?.date}>{news.date}</time>
       </header>

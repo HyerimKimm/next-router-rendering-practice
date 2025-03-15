@@ -26,12 +26,20 @@ export default async function YearFilteredArchivePage({
     ? getAvailableNewsMonths(Number(selectedYear))
     : [];
 
-  let newsList: NewsType[] = [];
+  let newsList: React.ReactNode;
 
-  if (selectedYear && !selectedMonth) {
-    newsList = getNewsForYear(Number(filter[0]));
+  if (!selectedYear && !selectedMonth) {
+    newsList = <article>Please select period.</article>;
+  } else if (selectedYear && !selectedMonth) {
+    /* 연도만 선택된 경우 */
+    newsList = <NewsList newsList={getNewsForYear(Number(filter[0]))} />;
   } else if (selectedYear && selectedMonth) {
-    newsList = getNewsForMonth(Number(filter[0]), Number(filter[1]));
+    /* 연도와 월이 모두 선택된 경우 */
+    newsList = (
+      <NewsList
+        newsList={getNewsForMonth(Number(filter[0]), Number(filter[1]))}
+      />
+    );
   }
 
   return (
@@ -54,7 +62,7 @@ export default async function YearFilteredArchivePage({
           />
         </nav>
       </header>
-      <NewsList newsList={newsList} />
+      {newsList}
     </>
   );
 }

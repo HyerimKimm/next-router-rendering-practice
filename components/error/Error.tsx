@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import styles from "./Error.module.css";
 
 type ErrorComponentPropsType = {
-  code: number;
+  code?: number;
   title: string;
   message: string;
   style?: CSSProperties;
