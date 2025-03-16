@@ -17,9 +17,14 @@ export default function InterceptedImagePage({
   }
 
   return (
-    <div className={styles.page}>
-      <h2>Intercepted!</h2>
-      <img src={`/images/news/${news.image}`} alt={news.title} />
+    <div className={styles.modal_backdrop}>
+      <div className={styles.modal}>
+        <img
+          src={`/images/news/${news.image}`}
+          alt={news.title}
+          className={styles.img}
+        />
+      </div>
     </div>
   );
 }
