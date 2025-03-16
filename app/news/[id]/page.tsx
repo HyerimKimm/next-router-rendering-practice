@@ -7,12 +7,12 @@ type NewsDetailPageParamsType = {
   id: string;
 };
 
-export default function NewsDetailPage({
+export default async function NewsDetailPage({
   params,
 }: {
-  params: NewsDetailPageParamsType;
+  params: Promise<NewsDetailPageParamsType>;
 }) {
-  const newsId = params.id;
+  const newsId = (await params).id;
 
   const news = DUMMY_NEWS.find((news) => news.id === newsId);
 

@@ -2,14 +2,14 @@ import { DUMMY_NEWS } from "@/dummy_news";
 import styles from "./page.module.css";
 import { notFound } from "next/navigation";
 
-export default function ImagePage({
+export default async function ImagePage({
   params,
 }: {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }) {
-  const newsId = params.id;
+  const newsId = (await params).id;
   const news = DUMMY_NEWS.find((newsItem) => newsItem.id === newsId);
 
   if (!news) {
